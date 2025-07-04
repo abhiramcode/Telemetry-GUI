@@ -21,6 +21,12 @@ import classNames from "classnames";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import BatteryStatus from "../../variables/SystemHUD/BatteryStatus.js";
+import FlightTime from "../../variables/SystemHUD/FlightTime.js";
+import SystemAlerts from "../../variables/SystemHUD/SystemAlerts.js"
+import ConnectionStatus from "../../variables/SystemHUD/ConnectionStatus";
+import ConnectionControl from "variables/SystemHUD/ConnectionControl.js";
+
 // reactstrap components
 import {
   Button,
@@ -35,6 +41,7 @@ import {
   Navbar,
   NavLink,
   Nav,
+  NavItem,
   Container,
   Modal,
   NavbarToggler,
@@ -100,13 +107,13 @@ function AdminNavbar(props) {
           </NavbarToggler>
           <Collapse navbar isOpen={collapseOpen}>
             <Nav className="ml-auto" navbar>
-              <InputGroup className="search-bar">
+              {/* <InputGroup className="search-bar">
                 <Button color="link" onClick={toggleModalSearch}>
                   <i className="tim-icons icon-zoom-split" />
                   <span className="d-lg-none d-md-block">Search</span>
                 </Button>
-              </InputGroup>
-              <UncontrolledDropdown nav>
+              </InputGroup> */}
+              {/* <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
                   color="default"
@@ -144,8 +151,24 @@ function AdminNavbar(props) {
                     </DropdownItem>
                   </NavLink>
                 </DropdownMenu>
-              </UncontrolledDropdown>
-              <UncontrolledDropdown nav>
+              </UncontrolledDropdown> */}
+              <NavItem className="d-flex align-items-center">
+                <FlightTime />
+              </NavItem>
+
+              <NavItem className="d-flex align-items-center">
+                <BatteryStatus voltage={3} current={2} percent={69} />
+              </NavItem>
+
+              <NavItem className="d-flex align-items-center">
+                <SystemAlerts />
+              </NavItem>
+
+              <NavItem className="d-flex align-items-center">
+                <ConnectionControl />
+                <ConnectionStatus />
+              </NavItem>
+              {/* <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
                   color="default"
@@ -170,8 +193,8 @@ function AdminNavbar(props) {
                     <DropdownItem className="nav-item">Log out</DropdownItem>
                   </NavLink>
                 </DropdownMenu>
-              </UncontrolledDropdown>
-              <li className="separator d-lg-none" />
+              </UncontrolledDropdown> */}
+              {/* <li className="separator d-lg-none" /> */}
             </Nav>
           </Collapse>
         </Container>

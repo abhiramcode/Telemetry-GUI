@@ -29,22 +29,25 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
 import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
+import { FlightProvider } from "./contexts/FlightContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <ThemeContextWrapper>
     <BackgroundColorWrapper>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/admin/*" element={<AdminLayout />} />
-          <Route path="/rtl/*" element={<RTLLayout />} />
-          <Route
-            path="*"
-            element={<Navigate to="/admin/dashboard" replace />}
-          />
-        </Routes>
-      </BrowserRouter>
+      <FlightProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/admin/*" element={<AdminLayout />} />
+            <Route path="/rtl/*" element={<RTLLayout />} />
+            <Route
+              path="*"
+              element={<Navigate to="/admin/dashboard" replace />}
+            />
+          </Routes>
+        </BrowserRouter>
+      </FlightProvider>
     </BackgroundColorWrapper>
   </ThemeContextWrapper>
 );

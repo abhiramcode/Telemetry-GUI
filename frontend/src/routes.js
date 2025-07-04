@@ -17,7 +17,7 @@
 */
 import Dashboard from "views/Dashboard.js";
 import Icons from "views/Icons.js";
-import Map from "views/Map.js";
+// import Map from "views/Map.js";
 import Notifications from "views/Notifications.js";
 import Rtl from "views/Rtl.js";
 import TableList from "views/TableList.js";
@@ -34,56 +34,56 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/icons",
-    name: "Icons",
+    // path: "/icons",
+    name: "Coming Soon",
     rtlName: "الرموز",
     icon: "tim-icons icon-atom",
     component: <Icons />,
     layout: "/admin",
   },
+  // {
+  //   path: "/map",
+  //   name: "Map",
+  //   rtlName: "خرائط",
+  //   icon: "tim-icons icon-pin",
+  //   component: <Map />,
+  //   layout: "/admin",
+  // },
   {
-    path: "/map",
-    name: "Map",
-    rtlName: "خرائط",
-    icon: "tim-icons icon-pin",
-    component: <Map />,
-    layout: "/admin",
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
+    // path: "/notifications",
+    name: "Coming Soon",
     rtlName: "إخطارات",
     icon: "tim-icons icon-bell-55",
     component: <Notifications />,
     layout: "/admin",
   },
   {
-    path: "/user-profile",
-    name: "User Profile",
+    // path: "/user-profile",
+    name: "Coming Soon",
     rtlName: "ملف تعريفي للمستخدم",
     icon: "tim-icons icon-single-02",
     component: <UserProfile />,
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "Table List",
+    // path: "/tables",
+    name: "Coming Soon",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-puzzle-10",
     component: <TableList />,
     layout: "/admin",
   },
   {
-    path: "/typography",
-    name: "Typography",
+    // path: "/typography",
+    name: "Coming Soon",
     rtlName: "طباعة",
     icon: "tim-icons icon-align-center",
     component: <Typography />,
     layout: "/admin",
   },
   {
-    path: "/rtl-support",
-    name: "RTL Support",
+    // path: "/rtl-support",
+    name: "Coming Soon",
     rtlName: "ار تي ال",
     icon: "tim-icons icon-world",
     component: <Rtl />,

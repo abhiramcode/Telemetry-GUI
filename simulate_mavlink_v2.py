@@ -12,7 +12,7 @@ battery_percentage = 100
 waypoint = 0
 
 def send_heartbeat():
-    master.mav.heartbeat_send(
+    master.mav.heartbeat_send( # type: ignore
         type=mavutil.mavlink.MAV_TYPE_QUADROTOR,
         autopilot=mavutil.mavlink.MAV_AUTOPILOT_ARDUPILOTMEGA,
         base_mode=0,
@@ -24,7 +24,7 @@ def send_sys_status():
     global battery_percentage
     battery_percentage = max(battery_percentage - 0.05, 0)  # simulate slow battery drain
 
-    master.mav.sys_status_send(
+    master.mav.sys_status_send( # type: ignore
         onboard_control_sensors_present=0b111111111,
         onboard_control_sensors_enabled=0b111111111,
         onboard_control_sensors_health=0b111111111,
@@ -41,7 +41,7 @@ def send_sys_status():
     )
 
 def send_gps_raw_int(satellites_visible):
-    master.mav.gps_raw_int_send(
+    master.mav.gps_raw_int_send( # type: ignore
         time_usec=int((time.time() - start_time) * 1e6),
         fix_type=3,
         lat=int((37.7749 + math.sin(t / 20) * 0.001) * 1e7),
@@ -52,22 +52,23 @@ def send_gps_raw_int(satellites_visible):
         vel=200,
         cog=0,
         satellites_visible=satellites_visible,
-        alt_ellipsoid=0,
-        h_acc=0,
-        v_acc=0,
-        vel_acc=0,
-        hdg_acc=0
+        # alt_ellipsoid=0,
+        # h_acc=0,
+        # v_acc=0,
+        # vel_acc=0,
+        # hdg_acc=0
     )
 
 def send_attitude(roll, pitch, yaw):
-    master.mav.attitude_send(
+    # print("[SIM] Sending ATTITUDE", roll, pitch, yaw)
+    master.mav.attitude_send( # type: ignore
         int((time.time() - start_time) * 1000),
         roll, pitch, yaw,
         0.01, 0.01, 0.01
     )
 
 def send_vfr_hud(airspeed, groundspeed, climb_rate):
-    master.mav.vfr_hud_send(
+    master.mav.vfr_hud_send( # type: ignore
         airspeed=airspeed,
         groundspeed=groundspeed,
         heading=90,
@@ -77,7 +78,7 @@ def send_vfr_hud(airspeed, groundspeed, climb_rate):
     )
 
 def send_position():
-    master.mav.global_position_int_send(
+    master.mav.global_position_int_send( # type: ignore
         int((time.time() - start_time) * 1000),
         int((37.7749 + math.sin(t / 10) * 0.001) * 1e7),
         int((-122.4194 + math.cos(t / 10) * 0.001) * 1e7),
@@ -87,10 +88,10 @@ def send_position():
     )
 
 def send_mission_current(current):
-    master.mav.mission_current_send(current)
+    master.mav.mission_current_send(current) # type: ignore
 
 def send_rc_channels():
-    master.mav.rc_channels_raw_send(
+    master.mav.rc_channels_raw_send( # type: ignore
         time_boot_ms=int((time.time() - start_time) * 1000),
         port=0,
         chan1_raw=1500,
@@ -105,7 +106,7 @@ def send_rc_channels():
     )
 
 def send_statustext(text):
-    master.mav.statustext_send(
+    master.mav.statustext_send( # type: ignore
         severity=4,  # INFO
         text=text.encode("utf-8")
     )
@@ -116,8 +117,8 @@ while True:
     t += 0.2
     send_heartbeat()
     send_sys_status()
-    # send_gps_raw_int(satellites_visible=int(8 + 2 * math.sin(t)))
-    send_attitude(math.sin(t) * 0.1, math.cos(t) * 0.1, math.sin(t / 2) * 0.2)
+    send_gps_raw_int(satellites_visible=int(8 + 2 * round(math.sin(t)) ))
+    send_attitude(math.sin(t) * 100, math.cos(t) * 100, math.sin(t / 2) * 200)
     send_vfr_hud(airspeed=10, groundspeed=8, climb_rate=0.5)
     send_position()
     send_mission_current(waypoint)
