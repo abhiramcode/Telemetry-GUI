@@ -23,3 +23,9 @@ Location : In frontend folder
 npm install
 npm start
 ```
+
+  ## Preview
+
+![Before Connecting](img/Dashboard-1.png)
+
+![While Running](img/Dashboard-2.png)
